@@ -29,11 +29,21 @@ class MainActivity : AppCompatActivity() {
             // en esta funcion habrá un delay()
             suspendingTask(miTexto)
         }
+        val job2 = GlobalScope.launch(Dispatchers.Main) {
+            // llamamos a una funcion que estara dentro de la corrutina
+            // en esta funcion habrá un delay()
+            suspendingTask2(miTexto)
+        }
+    }
+
+    suspend fun suspendingTask2(miTexto: TextView) {
+        delay(1500L)
+        miTexto.text="TASK2"
     }
 
     suspend fun suspendingTask(miTexto: TextView) {
         miTexto.text = "Hola"
         delay(3000L)
-        miTexto.text="Corrutine!"
+        miTexto.text = "Corrutine!"
     }
 }
